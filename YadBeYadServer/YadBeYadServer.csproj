@@ -23,4 +23,10 @@
     <ProjectReference Include="..\YadBeYadServerBL\YadBeYadServerBL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataBaseScripts\" />
+    <Folder Include="DTO\" />
+    <Folder Include="WwwRoot\" />
+  </ItemGroup>
+
 </Project>
