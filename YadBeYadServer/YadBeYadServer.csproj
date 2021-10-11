@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataBaseScripts\" />
     <Folder Include="DTO\" />
     <Folder Include="WwwRoot\" />
   </ItemGroup>
