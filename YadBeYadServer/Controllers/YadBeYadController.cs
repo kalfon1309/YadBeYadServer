@@ -9,7 +9,7 @@ using YadBeYadServerBL.Models;
 
 namespace YadBeYadServer.Controllers
 {
-    [Route("YadBeYadAPI")]
+    [Route("YadBeYadAPI")]//achi
     [ApiController]
     public class YadBeYadController : ControllerBase
     {
