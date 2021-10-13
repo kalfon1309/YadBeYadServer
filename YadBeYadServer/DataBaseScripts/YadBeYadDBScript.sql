@@ -1,4 +1,14 @@
-﻿CREATE TABLE Attraction(
+﻿Use Master
+
+CREATE DATABASE YadBeYadDB
+
+GO
+
+Use YadBeYadDB
+
+GO
+
+CREATE TABLE Attraction(
     AttractionID INT PRIMARY KEY IDENTITY(10000,1) NOT NULL,
     AttName NVARCHAR(255) NOT NULL,
     AttDescription NVARCHAR(255) NOT NULL,
@@ -46,7 +56,7 @@ CREATE TABLE Users(
 
 
 CREATE TABLE RecentAtt(
-    AttracionID INT NOT NULL,
+    AttractionID INT NOT NULL,
     UserID INT NOT NULL,
     AttDate DATE NOT NULL
 );
@@ -56,7 +66,7 @@ CREATE TABLE RecentAtt(
 
 
 CREATE TABLE AttStatus(
-    AttractionID INT PRIMARY KEY IDENTITY(10000,1) NOT NULL,
+    AttractionID INT NOT NULL,
     IsOpen BIT NOT NULL,
     OpeningHours NVARCHAR(255) NOT NULL,
     ClosingHours NVARCHAR(255) NOT NULL,
@@ -69,13 +79,16 @@ CREATE TABLE AttStatus(
 --    AttStatus ADD CONSTRAINT attstatus_attractionid_primary PRIMARY KEY(AttractionID);
 ALTER TABLE
     Rate ADD CONSTRAINT rate_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
+
 ALTER TABLE
     Review ADD CONSTRAINT review_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
 ALTER TABLE
-    Rate ADD CONSTRAINT rate_attractionid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
+    Rate ADD CONSTRAINT rate_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
 ALTER TABLE
-    Review ADD CONSTRAINT rate_attractionid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
+    Review ADD CONSTRAINT review_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
 ALTER TABLE
-    RecentAtt ADD CONSTRAINT rate_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
+    RecentAtt ADD CONSTRAINT recentAtt_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
 ALTER TABLE
-    RecentAtt ADD CONSTRAINT rate_attractionid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
+    RecentAtt ADD CONSTRAINT recentAtt_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
+ALTER TABLE
+    AttStatus ADD CONSTRAINT attstatus_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);

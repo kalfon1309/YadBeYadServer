@@ -20,6 +20,12 @@ namespace YadBeYadServer.Controllers
             this.context = context;
         }
         #endregion
-
+        [Route("Test")]
+        [HttpGet]
+        public string Test()
+        {
+            return "Get bet";
+        }
     }
+ 
 }
