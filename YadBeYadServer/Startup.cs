@@ -41,9 +41,9 @@ namespace YadBeYadServer
 
             //The following set the connection string to the DB and DB context!
             #region Add DB Context Support
-            string connectionString = this.Configuration.GetConnectionString("ContactsDB");
+            string connectionString = this.Configuration.GetConnectionString("YadBeYadDB");
 
-            services.AddDbContext<AhiyaDBContext>(options => options
+            services.AddDbContext<YadBeYadDBContext>(options => options
                                                                 .UseSqlServer(connectionString));
             //.UseLazyLoadingProxies());
             #endregion

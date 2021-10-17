@@ -14,8 +14,8 @@ namespace YadBeYadServer.Controllers
     public class YadBeYadController : ControllerBase
     {
         #region Add connection to the db context using dependency injection
-        AhiyaDBContext context;
-        public YadBeYadController(AhiyaDBContext context)
+        YadBeYadDBContext context;
+        public YadBeYadController(YadBeYadDBContext context)
         {
             this.context = context;
         }
@@ -24,7 +24,8 @@ namespace YadBeYadServer.Controllers
         [HttpGet]
         public string Test()
         {
-            return "Get bet";
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return context.Test();
         }
     }
  
