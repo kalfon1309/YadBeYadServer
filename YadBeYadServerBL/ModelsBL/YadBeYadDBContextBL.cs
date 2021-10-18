@@ -9,9 +9,19 @@ namespace YadBeYadServerBL.Models
 {
     partial class YadBeYadDBContext : DbContext
     {
-        public string Test()
+        //public string Test()
+        //{
+        //    return "Achiya's mom is a milf";
+        //}
+
+        public User Login(string email, string pswd)
         {
-            return "Achiya's mom is a milf";
+            User user = this.Users
+                .Include(us => us.UserContacts)
+                .ThenInclude(uc => uc.ContactPhones)
+                .Where(u => u.Email == email && u.UserPswd == pswd).FirstOrDefault();
+
+            return user;
         }
     }
 }

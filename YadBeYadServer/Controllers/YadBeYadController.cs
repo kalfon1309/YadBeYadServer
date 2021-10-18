@@ -27,6 +27,27 @@ namespace YadBeYadServer.Controllers
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return context.Test();
         }
+        public User Login([FromQuery] string email, [FromQuery] string pass)
+        {
+            User user = context.Login(email, pass);
+
+            //Check user name and password
+            if (user != null)
+            {
+                HttpContext.Session.SetObject("theUser", user);
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+
+                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
+                return user;
+            }
+            else
+            {
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
     }
  
 }
