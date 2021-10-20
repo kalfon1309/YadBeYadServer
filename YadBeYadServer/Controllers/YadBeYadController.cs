@@ -27,6 +27,8 @@ namespace YadBeYadServer.Controllers
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             return context.Test();
         }
+        [Route("Login")]
+        [HttpGet]
         public User Login([FromQuery] string email, [FromQuery] string pass)
         {
             User user = context.Login(email, pass);
@@ -34,7 +36,7 @@ namespace YadBeYadServer.Controllers
             //Check user name and password
             if (user != null)
             {
-                HttpContext.Session.SetObject("theUser", user);
+                HttpContext.Session.SetObject("theUser",user);
 
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
 
@@ -48,6 +50,7 @@ namespace YadBeYadServer.Controllers
                 return null;
             }
         }
+       
     }
  
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +9,14 @@ namespace YadBeYadServerBL.Models
 {
     partial class YadBeYadDBContext : DbContext
     {
-        //public string Test()
-        //{
-        //    return "Achiya's mom is a milf";
-        //}
+        
 
         public User Login(string email, string pswd)
         {
             User user = this.Users
-                .Include(us => us.UserContacts)
-                .ThenInclude(uc => uc.ContactPhones)
-                .Where(u => u.Email == email && u.UserPswd == pswd).FirstOrDefault();
+                .Include(us => us.Rates)
+                .Include(uc => uc.Reviews)
+                .Where(u => u.Email == email && u.Pass == pswd).FirstOrDefault();
 
             return user;
         }
