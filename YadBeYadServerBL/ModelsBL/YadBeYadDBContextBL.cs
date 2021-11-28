@@ -20,5 +20,42 @@ namespace YadBeYadServerBL.Models
 
             return user;
         }
+
+        // Sign Up for Client
+
+        public bool SignUp(User u)
+        {
+          
+            if(u != null)
+            {
+                this.Users.Add(u);
+                this.SaveChanges();
+                return true;
+            }
+
+            return false;
+
+        }
+
+
+
+        // a function that checks that the inserted email and user name are unique
+
+        public bool CheckUniqueness(string email, string userName)
+        {
+            User user = this.Users.Where(u => u.Email == email || u.UserName == userName).FirstOrDefault();
+
+            if (user == null)//the email and the user name are unique
+            {
+                return true;
+            }
+            else//one or both are not unique
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }
