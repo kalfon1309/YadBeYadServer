@@ -9,7 +9,10 @@ namespace YadBeYadServerBL.Models
 {
     partial class YadBeYadDBContext : DbContext
     {
-        
+        public List<Attraction> GetAttractions()
+        {
+            return this.Attractions.ToList<Attraction>();
+        }
 
         public User Login(string email, string pswd)
         {
