@@ -11,7 +11,8 @@ namespace YadBeYadServerBL.Models
     {
         public List<Attraction> GetAttractions()
         {
-            return this.Attractions.ToList<Attraction>();
+            List<Attraction> attractions = this.Attractions.ToList<Attraction>();
+            return attractions;
         }
 
         public User Login(string email, string pswd)
