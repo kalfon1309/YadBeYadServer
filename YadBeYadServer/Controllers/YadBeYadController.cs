@@ -100,14 +100,10 @@ namespace YadBeYadServer.Controllers
 
         public List<Attraction> GetAttractions()
         {
-            User u = HttpContext.Session.GetObject<User>("theUser");
-            //if(u != null)
-            //{
+            
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 return context.GetAttractions();
-            //}
-            Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-            return null;
+           
         }
 
 

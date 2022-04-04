@@ -92,3 +92,89 @@ ALTER TABLE
     RecentAtt ADD CONSTRAINT recentAtt_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
 ALTER TABLE
     AttStatus ADD CONSTRAINT attstatus_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
+
+
+
+
+
+
+
+
+
+
+
+    USE [YadBeYadDB]
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Hermon'
+           ,'this is the highest place in all of Israel.'
+           ,'Ramat Hagolan'
+           ,'North'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Kineret'
+           ,'this is the sweetest place in all of Israel.'
+           ,'tveria'
+           ,'North'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('MagicKass'
+           ,'this is the Amits horror place in all of Israel.'
+           ,'Maale Edumim'
+           ,'East'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Dead Sea'
+           ,'this is the lowest place in all of Israel.'
+           ,'Yerijo'
+           ,'East'
+           ,1)
+GO
+
+
+INSERT INTO [dbo].[Users]
+           ([Email]
+           ,[FirstName]
+           ,[LastName]
+           ,[Age]
+           ,[UserName]
+           ,[Pass])
+     VALUES
+           ('a@gmail.com'
+           ,'Ahiya'
+           ,'Calfon'
+           ,17
+           ,'achi'
+           ,'123')
+GO

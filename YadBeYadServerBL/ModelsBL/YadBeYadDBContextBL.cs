@@ -11,7 +11,7 @@ namespace YadBeYadServerBL.Models
     {
         public List<Attraction> GetAttractions()
         {
-            List<Attraction> attractions = this.Attractions.ToList<Attraction>();
+            List<Attraction> attractions = this.Attractions.Include(att=>att.Rates).Include(att=>att.Reviews).ToList<Attraction>();
             return attractions;
         }
 
