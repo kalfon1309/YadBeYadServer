@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-
+#nullable disable
 
 namespace YadBeYadServerBL.Models
 {
@@ -19,8 +19,8 @@ namespace YadBeYadServerBL.Models
 
         public virtual DbSet<AttStatus> AttStatuses { get; set; }
         public virtual DbSet<Attraction> Attractions { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
-        public virtual DbSet<RecentAtt> RecentAtts { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -31,11 +31,6 @@ namespace YadBeYadServerBL.Models
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=YadBeYadDB;Trusted_Connection=True;");
             }
-        }
-
-        public string Test()
-        {
-            throw new NotImplementedException();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -88,6 +83,27 @@ namespace YadBeYadServerBL.Models
                     .HasMaxLength(255);
             });
 
+            modelBuilder.Entity<Favorite>(entity =>
+            {
+                entity.Property(e => e.FavoriteId).HasColumnName("FavoriteID");
+
+                entity.Property(e => e.AttractionId).HasColumnName("AttractionID");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.Attraction)
+                    .WithMany(p => p.Favorites)
+                    .HasForeignKey(d => d.AttractionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("favorites_attractionid_foreign");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Favorites)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("favorites_userid_foreign");
+            });
+
             modelBuilder.Entity<Rate>(entity =>
             {
                 entity.ToTable("Rate");
@@ -109,31 +125,6 @@ namespace YadBeYadServerBL.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("rate_userid_foreign");
-            });
-
-            modelBuilder.Entity<RecentAtt>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("RecentAtt");
-
-                entity.Property(e => e.AttDate).HasColumnType("date");
-
-                entity.Property(e => e.AttractionId).HasColumnName("AttractionID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
-                entity.HasOne(d => d.Attraction)
-                    .WithMany()
-                    .HasForeignKey(d => d.AttractionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("recentAtt_attractionid_foreign");
-
-                entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("recentAtt_userid_foreign");
             });
 
             modelBuilder.Entity<Review>(entity =>
@@ -167,10 +158,10 @@ namespace YadBeYadServerBL.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Email, "UQ__Users__A9D105340EAEA9E6")
+                entity.HasIndex(e => e.Email, "UQ__Users__A9D105346DB14732")
                     .IsUnique();
 
-                entity.HasIndex(e => e.UserName, "UQ__Users__C9F2845624109BBC")
+                entity.HasIndex(e => e.UserName, "UQ__Users__C9F284566D54C34A")
                     .IsUnique();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");

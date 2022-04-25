@@ -20,13 +20,7 @@ namespace YadBeYadServer.Controllers
             this.context = context;
         }
         #endregion
-        [Route("Test")]
-        [HttpGet]
-        public string Test()
-        {
-            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-            return context.Test();
-        }
+        
         [Route("Login")]
         [HttpGet]
         public User Login([FromQuery] string email, [FromQuery] string pass)

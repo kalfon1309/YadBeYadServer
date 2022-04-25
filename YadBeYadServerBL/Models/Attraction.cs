@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
+#nullable disable
 
 namespace YadBeYadServerBL.Models
 {
@@ -9,6 +9,7 @@ namespace YadBeYadServerBL.Models
     {
         public Attraction()
         {
+            Favorites = new HashSet<Favorite>();
             Rates = new HashSet<Rate>();
             Reviews = new HashSet<Review>();
         }
@@ -20,6 +21,7 @@ namespace YadBeYadServerBL.Models
         public string GeographyLoc { get; set; }
         public bool IsPrice { get; set; }
 
+        public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<Rate> Rates { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }

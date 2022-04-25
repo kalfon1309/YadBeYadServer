@@ -55,10 +55,11 @@ CREATE TABLE Users(
 --    Users ADD CONSTRAINT user_id_primary PRIMARY KEY(ID);
 
 
-CREATE TABLE RecentAtt(
+CREATE TABLE Favorites(
+    FavoriteID INT PRIMARY KEY IDENTITY(10000,1) NOT NULL,
     AttractionID INT NOT NULL,
     UserID INT NOT NULL,
-    AttDate DATE NOT NULL
+    IsActive BIT NOT NULL
 );
 --ALTER TABLE
 --    RecentAtt ADD CONSTRAINT recentatt_attracionid_primary PRIMARY KEY(AttracionID);
@@ -87,9 +88,9 @@ ALTER TABLE
 ALTER TABLE
     Review ADD CONSTRAINT review_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
 ALTER TABLE
-    RecentAtt ADD CONSTRAINT recentAtt_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
+    Favorites ADD CONSTRAINT favorites_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
 ALTER TABLE
-    RecentAtt ADD CONSTRAINT recentAtt_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
+    Favorites ADD CONSTRAINT favorites_userid_foreign FOREIGN KEY(UserID) REFERENCES Users(UserID);
 ALTER TABLE
     AttStatus ADD CONSTRAINT attstatus_attractionid_foreign FOREIGN KEY(AttractionID) REFERENCES Attraction(AttractionID);
 
