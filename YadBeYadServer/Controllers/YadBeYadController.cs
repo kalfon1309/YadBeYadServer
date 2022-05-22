@@ -101,6 +101,37 @@ namespace YadBeYadServer.Controllers
         }
 
 
+        [Route("AddFavorite")]
+        [HttpPost]
+
+        public Favorite AddFavorite([FromBody] Favorite favorite)
+        {
+
+            User user = HttpContext.Session.GetObject<User>("theUser");
+
+            if (user!=null)//the sign up worked
+            {
+                
+                // context.Favorites.Update(favorite);
+                context.Entry(favorite).State = EntityState.Added;
+                context.Entry(favorite.Attraction).State = EntityState.Unchanged;
+                context.Entry(favorite.User).State = EntityState.Unchanged;
+
+                context.SaveChanges();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return favorite;
+            }
+            else//the user not loggedIn in
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+
+
+
+
+
     }
 
 }
