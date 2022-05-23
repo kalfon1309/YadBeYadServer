@@ -11,15 +11,16 @@ namespace YadBeYadServerBL.Models
     {
         public List<Attraction> GetAttractions()
         {
-            List<Attraction> attractions = this.Attractions.Include(att=>att.Rates).Include(att=>att.Reviews).ToList<Attraction>();
+            List<Attraction> attractions = this.Attractions.Include(att=>att.Rates).Include(att=>att.Reviews).ThenInclude(r=>r.User).ToList<Attraction>();
             return attractions;
         }
 
         public User Login(string email, string pswd)
         {
             User user = this.Users
-                .Include(us => us.Rates)
-                .Include(uc => uc.Reviews)
+                .Include(us => us.Rates).ThenInclude(f => f.Attraction)
+                .Include(uc => uc.Reviews).ThenInclude(f => f.Attraction)
+                .Include(uc => uc.Favorites).ThenInclude(f => f.Attraction)
                 .Where(u => u.Email == email && u.Pass == pswd).FirstOrDefault();
 
             return user;
@@ -57,6 +58,50 @@ namespace YadBeYadServerBL.Models
             {
                 return false;
             }
+        }
+
+
+        public Favorite AddFavorite(Favorite favorite)
+        {
+            Favorite toReActivate = this.Favorites.Where(f => f.UserId == favorite.User.UserId && f.AttractionId == favorite.Attraction.AttractionId).FirstOrDefault();
+            if(toReActivate != null)
+            {
+                toReActivate.IsActive = true;
+                this.Entry(toReActivate).State = EntityState.Modified;
+                this.SaveChanges();
+                return toReActivate;
+            }
+            else
+            {
+                this.Entry(favorite).State = EntityState.Added;
+                this.Entry(favorite.Attraction).State = EntityState.Unchanged;
+                this.Entry(favorite.User).State = EntityState.Unchanged;
+
+                this.SaveChanges();
+                Favorite toReturn = this.Favorites.Where(f => f.UserId == favorite.User.UserId && f.AttractionId == favorite.Attraction.AttractionId).FirstOrDefault();
+                return toReturn;
+            }
+            
+        }
+
+
+        public bool CancelFavorite(int favoriteId)
+        {
+
+            Favorite toCancel = this.Favorites.Where(f => f.FavoriteId == favoriteId).FirstOrDefault();
+
+            if(toCancel != null)
+            {
+                toCancel.IsActive = false;
+                this.Entry(toCancel).State = EntityState.Modified;
+                this.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 

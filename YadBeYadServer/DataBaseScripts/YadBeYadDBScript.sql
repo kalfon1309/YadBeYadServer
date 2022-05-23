@@ -178,4 +178,75 @@ INSERT INTO [dbo].[Users]
            ,17
            ,'achi'
            ,'123')
+
+
+          INSERT INTO [dbo].[Review]
+           ([Comment]
+           ,[AttractionID]
+           ,[IsActive]
+           ,[ReviewDate]
+           ,[UserID])
+     VALUES
+           ('the hermon is the besttttttt'
+           ,10000
+           ,1
+           ,'20220523 02:00:00 PM'
+           ,10000)
+
+
+		   INSERT INTO [dbo].[Review]
+           ([Comment]
+           ,[AttractionID]
+           ,[IsActive]
+           ,[ReviewDate]
+           ,[UserID])
+     VALUES
+           ('the hermon is the worsttt'
+           ,10000
+           ,1
+           ,'20220321 07:22:00 PM'
+           ,10000)
+
+
+
+		   INSERT INTO [dbo].[Review]
+           ([Comment]
+           ,[AttractionID]
+           ,[IsActive]
+           ,[ReviewDate]
+           ,[UserID])
+     VALUES
+           ('I realy love the Hermon'
+           ,10000
+           ,1
+           ,'20210112 02:03:00 PM'
+           ,10000)
+
+
+		   INSERT INTO [dbo].[Review]
+           ([Comment]
+           ,[AttractionID]
+           ,[IsActive]
+           ,[ReviewDate]
+           ,[UserID])
+     VALUES
+           ('amazing place'
+           ,10000
+           ,1
+           ,'20200526 09:13:04 AM'
+           ,10000)
+
+		   INSERT INTO [dbo].[Review]
+           ([Comment]
+           ,[AttractionID]
+           ,[IsActive]
+           ,[ReviewDate]
+           ,[UserID])
+     VALUES
+           ('nice place'
+           ,10000
+           ,1
+           ,'20220523 02:00:00 PM'
+           ,10000)
+           
 GO
