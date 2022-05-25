@@ -99,7 +99,63 @@ namespace YadBeYadServer.Controllers
                 return context.GetAttractions();
            
         }
+        [Route("GetReviewsByUser")]
+        [HttpGet]
+        public List<Review> GetReviewsByUser([FromQuery] int userId)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
 
+            if (user != null)//the sign up worked
+            {
+
+                List<Review> l = context.GetReviewsByUser(userId);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return l;
+            }
+            else//the user not loggedIn in
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        [Route("GetRatesByUser")]
+        [HttpGet]
+        public List<Rate> GetRatesByUser([FromQuery] int userId)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
+
+            if (user != null)//the sign up worked
+            {
+
+                List<Rate> l = context.GetRatesByUser(userId);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return l;
+            }
+            else//the user not loggedIn in
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        [Route("GetFavoritesByUser")]
+        [HttpGet]
+        public List<Favorite> GetFavoritesByUser([FromQuery] int userId)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
+
+            if (user != null)//the sign up worked
+            {
+
+                List<Favorite> l = context.GetFavoritesByUser(userId);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return l;
+            }
+            else//the user not loggedIn in
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
 
         [Route("AddFavorite")]
         [HttpPost]

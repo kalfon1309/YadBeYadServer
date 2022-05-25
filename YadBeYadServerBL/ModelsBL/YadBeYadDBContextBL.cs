@@ -42,7 +42,19 @@ namespace YadBeYadServerBL.Models
 
         }
 
+        public List<Review> GetReviewsByUser(int userId)
+        {
+            return Reviews.Include(r => r.Attraction).Where(r => r.UserId == userId).ToList<Review>();
+        }
+        public List<Rate> GetRatesByUser(int userId)
+        {
+            return Rates.Include(r => r.Attraction).Where(r => r.UserId == userId).ToList<Rate>();
+        }
+        public List<Favorite> GetFavoritesByUser(int userId)
+        {
+            return Favorites.Include(f => f.Attraction).Where(f => f.UserId == userId).ToList<Favorite>();
 
+        }
 
         // a function that checks that the inserted email and user name are unique
 
