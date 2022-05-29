@@ -249,4 +249,14 @@ INSERT INTO [dbo].[Users]
            ,'20220523 02:00:00 PM'
            ,10000)
            
+            INSERT INTO [dbo].[Rate]
+           ([Rates]
+           ,[AttractionID]
+           ,[UserID])
+     VALUES
+           ('8'
+           ,10000
+           ,10000)
+
+
 GO
