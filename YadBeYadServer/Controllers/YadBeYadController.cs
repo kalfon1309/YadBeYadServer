@@ -201,6 +201,62 @@ namespace YadBeYadServer.Controllers
         }
 
 
+        [Route("UpdateUser")]
+        [HttpPost]
+
+        public bool UpdateUser([FromBody] User user)
+        {
+            bool isSuccess = context.UpdateUser(user);
+
+            if (isSuccess)//the sign up worked
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return isSuccess;
+            }
+            else//the sign up failed
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return isSuccess;
+            }
+        }
+
+        [Route("AddReview")]
+        [HttpPost]
+
+        public bool AddReview([FromBody] Review review)
+        {
+            bool isSuccess = context.AddReview(review);
+
+            if (isSuccess)//the sign up worked
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return isSuccess;
+            }
+            else//the sign up failed
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return isSuccess;
+            }
+        }
+
+        [Route("AddRate")]
+        [HttpPost]
+
+        public bool AddRate([FromBody] Rate rate)
+        {
+            bool isSuccess = context.AddRate(rate);
+
+            if (isSuccess)//the sign up worked
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return isSuccess;
+            }
+            else//the sign up failed
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return isSuccess;
+            }
+        }
 
     }
 

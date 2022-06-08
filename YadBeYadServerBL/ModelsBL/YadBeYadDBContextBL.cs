@@ -116,7 +116,57 @@ namespace YadBeYadServerBL.Models
 
         }
 
+        public bool UpdateUser(User user)
+        {
 
+            User userInDB = this.Users.Where(u => u.UserId == user.UserId).FirstOrDefault();
+            if(userInDB != null)
+            {
+                userInDB.Email = user.Email;
+                userInDB.Age = user.Age;
+                userInDB.FirstName = user.FirstName;
+                userInDB.LastName = user.LastName;
+                userInDB.Pass = user.Pass;
+                userInDB.UserName = user.UserName;
+
+                this.Entry(userInDB).State = EntityState.Modified;
+                this.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool AddReview(Review r)
+        {
+
+            if (r != null)
+            {
+                this.Entry(r).State = EntityState.Added;
+                this.SaveChanges();
+                return true;
+            }
+
+            return false;
+
+        }
+
+        public bool AddRate(Rate r)
+        {
+
+            if (r != null)
+            {
+                this.Entry(r).State = EntityState.Added;
+                this.SaveChanges();
+                return true;
+            }
+
+            return false;
+
+        }
 
     }
 }
