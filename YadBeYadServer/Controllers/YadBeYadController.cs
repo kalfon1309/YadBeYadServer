@@ -239,6 +239,76 @@ namespace YadBeYadServer.Controllers
             }
         }
 
+        [Route("DeleteReview")]
+        [HttpPost]
+        public bool DeleteReview([FromBody]Review r)
+        {
+            try
+            {
+                var del = context.Reviews.Find(r.ReviewId);
+                context.Entry(del).State = EntityState.Deleted;
+                context.SaveChanges();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                return false;
+
+            }
+        }
+
+
+
+        [Route("DeleteFavorite")]
+        [HttpPost]
+        public bool DeleteFavorite([FromBody] Favorite f)
+        {
+            try
+            {
+                var del = context.Favorites.Find(f.FavoriteId);
+                context.Entry(del).State = EntityState.Deleted;
+                context.SaveChanges();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                return false;
+
+            }
+        }
+
+
+
+
+        [Route("DeleteRate")]
+        [HttpPost]
+        public bool DeleteRate([FromBody] Rate r)
+        {
+            try
+            {
+                var del = context.Rates.Find(r.RateId);
+                context.Entry(del).State = EntityState.Deleted;
+                context.SaveChanges();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+                return false;
+
+            }
+        }
+
+
+
         [Route("AddRate")]
         [HttpPost]
 
