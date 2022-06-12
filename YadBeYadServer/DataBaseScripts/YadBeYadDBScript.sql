@@ -163,6 +163,62 @@ INSERT INTO [dbo].[Attraction]
            ,1)
 GO
 
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Jordan River'
+           ,'one of the largest rivers in israel.'
+           ,'Yerijo'
+           ,'East'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Ramat Gan Zoo'
+           ,'this is the largest zoo in israel.'
+           ,'Ramat Gan'
+           ,'West'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Mitzpe Tat Yami'
+           ,'the best place to see amazing fish.'
+           ,'Eilat'
+           ,'South'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Attraction]
+           ([AttName]
+           ,[AttDescription]
+           ,[AttLocation]
+           ,[GeographyLoc]
+           ,[IsPrice])
+     VALUES
+           ('Mitzpe Ramon'
+           ,'this is the lowest place in all of Israel.'
+           ,'Yerijo'
+           ,'East'
+           ,0)
+GO
+
 
 INSERT INTO [dbo].[Users]
            ([Email]
